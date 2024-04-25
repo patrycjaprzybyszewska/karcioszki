@@ -58,7 +58,7 @@
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
             button3.TabIndex = 2;
-            button3.Text = "button3";
+            button3.Text = "MEMORY";
             button3.UseVisualStyleBackColor = true;
             // 
             // button4
@@ -67,7 +67,7 @@
             button4.Name = "button4";
             button4.Size = new Size(112, 34);
             button4.TabIndex = 3;
-            button4.Text = "button4";
+            button4.Text = "PIOTRUŚ";
             button4.UseVisualStyleBackColor = true;
             // 
             // Form1
