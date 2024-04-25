@@ -23,11 +23,18 @@ namespace karcioszki
    
     public partial class PIOTRUS : Form
     {
-        liczba_os uczestnicy;
-        public PIOTRUS(liczba_os uczestnicy)
+        Form1 form1;
+        createTable class1;
+        public PIOTRUS(Form1 form1)
         {
             InitializeComponent();
-            this.uczestnicy = uczestnicy;
+            this.class1 = new createTable();
+            this.form1 = form1;
+        }
+
+        public void wyswietlTab()
+        {
+            
         }
 
 

@@ -6,9 +6,36 @@ using System.Threading.Tasks;
 
 namespace karcioszki
 {
+    
+
     internal class Class1
     {
+        
+        
+
     }
+    public class createTable
+    {
+
+        public int[,] tab = new int[4, 13];
+        public createTable()
+        {
+            
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 13; j++)
+                {
+                    tab[i, j] = j;
+                    Console.Write(String.Format("{0} ",tab[i,j].ToString()));
+                }
+                Console.WriteLine();
+            }
+           
+        }
+
+    }
+
+
     public enum Suit
     {
         Club = 1,
