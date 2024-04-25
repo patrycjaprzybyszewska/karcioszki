@@ -16,5 +16,11 @@ namespace karcioszki
         {
             InitializeComponent();
         }
+
+        private void WOJNA_Load(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }
