@@ -14,9 +14,29 @@ namespace karcioszki
         
 
     }
+    /*
+     kolejność kolorów (wierszy):
+    0. trefl
+    1. karo
+    2. kier
+    3. pik
+
+    kolejność figur (kolumn):
+    0. 2
+    1. 3
+    2. 4
+    .
+    .
+    9. J
+    10. Q
+    11.K
+    12. AS
+    13. JOCKER
+     */
+    
     public class createTable
     {
-
+        
         public int[,] tab = new int[4, 13];
         public createTable()
         {

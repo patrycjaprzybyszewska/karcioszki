@@ -37,7 +37,7 @@
             // button1
             // 
             button1.Location = new Point(115, 159);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(90, 27);
             button1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // button2
             // 
             button2.Location = new Point(115, 229);
-            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(90, 27);
             button2.TabIndex = 1;
@@ -57,7 +57,7 @@
             // button3
             // 
             button3.Location = new Point(115, 284);
-            button3.Margin = new Padding(2, 2, 2, 2);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
             button3.Size = new Size(90, 27);
             button3.TabIndex = 2;
@@ -67,11 +67,11 @@
             // button4
             // 
             button4.Location = new Point(115, 350);
-            button4.Margin = new Padding(2, 2, 2, 2);
+            button4.Margin = new Padding(2);
             button4.Name = "button4";
             button4.Size = new Size(90, 27);
             button4.TabIndex = 3;
-            button4.Text = "PIOTRUŚ";
+            button4.Text = "RULETKA";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -84,7 +84,7 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
