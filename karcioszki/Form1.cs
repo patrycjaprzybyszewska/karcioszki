@@ -4,9 +4,11 @@ namespace karcioszki
     {
         liczba_os uczestnicy;
         public string osoby;
+        Wojna2 wojna2;
         public Form1()
         {
             InitializeComponent();
+            wojna2 = new Wojna2();
             Console.SetOut(new DebugTextWriter());
         }
         //piotrus
@@ -20,6 +22,12 @@ namespace karcioszki
                 return;
             }
             this.uczestnicy.Focus();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            wojna2.Show();
+            this.Hide();
         }
     }
 }
