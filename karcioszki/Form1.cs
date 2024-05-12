@@ -7,6 +7,7 @@ namespace karcioszki
         public Form1()
         {
             InitializeComponent();
+            wojna2 = new Wojna2();
             Console.SetOut(new DebugTextWriter());
         }
        
@@ -22,6 +23,12 @@ namespace karcioszki
                 return;
             }
             this.uczestnicy.Focus();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            wojna2.Show();
+            this.Hide();
         }
     }
 }
