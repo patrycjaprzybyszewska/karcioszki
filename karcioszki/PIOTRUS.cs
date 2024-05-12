@@ -43,6 +43,7 @@ namespace karcioszki
             this.uczestnicy = playersNick.uczestnicy;
             nameList = new List<string>();
             scoreList = new List<int>();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         // obstawianie koloru karty
@@ -59,72 +60,81 @@ namespace karcioszki
         {
             selectedIndexFigure = comboBox2.SelectedIndex;
         }
-        //graj
+
         private void button1_Click(object sender, EventArgs e)
         {
             playGame();
-            //playRuletka();
         }
 
         public void playGame()
         {
             Random rnd = new Random();
-
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 13; j++)
-                {
-                    row_indeks = rnd.Next(0, 4); // kolory
-                    col_indeks = rnd.Next(0, 13); // figury
-                }
-            }
+            row_indeks = rnd.Next(0, 4); // kolory
+            col_indeks = rnd.Next(0, 13); // figury
 
             switch (row_indeks)
             {
                 case 0:
                     card_color = "trefl";
+                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\2.png");
                     break;
                 case 1:
                     card_color = "karo";
+                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\4.png");
                     break;
                 case 2:
                     card_color = "kier";
+                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\1.png");
                     break;
                 case 3:
                     card_color = "pik";
+                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\3.png");
                     break;
+
             }
             if (col_indeks == 9)
             {
                 card_figure = "J";
+                label5.Text = card_figure;
             }
             if (col_indeks == 10)
             {
                 card_figure = "Q";
+                label5.Text = card_figure;
             }
             if (col_indeks == 11)
             {
                 card_figure = "K";
+                label5.Text = card_figure;
             }
             if (col_indeks == 12)
             {
                 card_figure = "AS";
+                label5.Text = card_figure;
             }
             if (col_indeks == 13)
             {
                 card_figure = "JOCKER";
+                label5.Text = card_figure;
             }
-            else { card_figure = col_indeks.ToString(); }
+            else { 
+                card_figure = col_indeks.ToString();
+                label5.Text = card_figure;
+            }
 
             if (row_indeks == selectedIndexColor && col_indeks == selectedIndexFigure)
             {
-                MessageBox.Show("dobrze strzeliles", "Wygrales!");
+                MessageBox.Show("dobrze strzeliłeś", "Wygrałeś!");
                 punkty = 1;
+                pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+                label5.Text = " ";
             }
             else
             {
-                MessageBox.Show($"Zle strzeliles. Wartości: kolor = {card_color}, figura = {card_figure}", "Przegrales!");
+                MessageBox.Show($"Źle strzeliłeś. Wartości karty to: kolor = {card_color}, figura = {card_figure}", "Przegrałeś!");
                 punkty = 0;
+                pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+                label5.Text = " ";
             }
 
             nameList.Add(playersNick.playerTextBoxes[currentPlayerIndex].Text);
@@ -136,6 +146,7 @@ namespace karcioszki
                 currentPlayerIndex = 0;
                 saveResultsToCSV();
                 MessageBox.Show("Gra zakończona. Wyniki zostały zapisane do pliku CSV.");
+                Application.Exit();
             }
             else
             {
@@ -165,14 +176,19 @@ namespace karcioszki
                 }
             }
         }
-        //obrazek
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
         }
 
         private void PIOTRUS_Load(object sender, EventArgs e)
         {
+            if (playersNick.playerTextBoxes.Length > 0)
+                label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
+
+            pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
         }
@@ -181,7 +197,10 @@ namespace karcioszki
         {
 
         }
-       
-       
+        //d ofigury wpis
+        private void label5_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

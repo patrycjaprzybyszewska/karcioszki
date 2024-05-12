@@ -35,6 +35,8 @@
             button1 = new Button();
             pictureBox1 = new PictureBox();
             label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -98,18 +100,38 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(288, 88);
+            label3.Location = new Point(294, 138);
             label3.Name = "label3";
             label3.Size = new Size(50, 20);
             label3.TabIndex = 8;
             label3.Text = "label3";
             label3.Click += label3_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(294, 96);
+            label4.Name = "label4";
+            label4.Size = new Size(35, 20);
+            label4.TabIndex = 9;
+            label4.Text = "Gra:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(108, 388);
+            label5.Name = "label5";
+            label5.Size = new Size(0, 20);
+            label5.TabIndex = 10;
+            label5.Click += label5_Click;
+            // 
             // PIOTRUS
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(pictureBox1);
             Controls.Add(button1);
@@ -134,5 +156,7 @@
         private Button button1;
         private PictureBox pictureBox1;
         private Label label3;
+        private Label label4;
+        private Label label5;
     }
 }
