@@ -33,8 +33,8 @@
             comboBox2 = new ComboBox();
             label2 = new Label();
             button1 = new Button();
-            textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -78,21 +78,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(495, 275);
+            button1.Location = new Point(470, 275);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 4;
             button1.Text = "GRAJ";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(267, 88);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 6;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox1
             // 
@@ -103,13 +95,23 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(288, 88);
+            label3.Name = "label3";
+            label3.Size = new Size(50, 20);
+            label3.TabIndex = 8;
+            label3.Text = "label3";
+            label3.Click += label3_Click;
+            // 
             // PIOTRUS
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
             Controls.Add(pictureBox1);
-            Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(label2);
             Controls.Add(comboBox2);
@@ -130,7 +132,7 @@
         private ComboBox comboBox2;
         private Label label2;
         private Button button1;
-        private TextBox textBox1;
         private PictureBox pictureBox1;
+        private Label label3;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
@@ -18,6 +19,9 @@ namespace karcioszki
         Form1 form1;
         createTable class1;
         playersNick playersNick;
+        liczba_os uczestnicy;
+
+
         public int[,] tab_card;
         public int selectedIndexColor;
         public int selectedIndexFigure;
@@ -25,12 +29,20 @@ namespace karcioszki
         public int col_indeks;
         public string card_color;
         public string card_figure;
+        public int currentPlayerIndex = 0;
+        public int punkty;
+        public List<string> nameList;
+        public List<int> scoreList;
 
-        public PIOTRUS(Form1 form1)
+        public PIOTRUS(playersNick playersNick)
         {
             InitializeComponent();
+            this.playersNick = playersNick;
             this.class1 = new createTable();
-            this.form1 = form1;
+            this.form1 = playersNick.form1;
+            this.uczestnicy = playersNick.uczestnicy;
+            nameList = new List<string>();
+            scoreList = new List<int>();
         }
 
         // obstawianie koloru karty
@@ -51,12 +63,7 @@ namespace karcioszki
         private void button1_Click(object sender, EventArgs e)
         {
             playGame();
-        }
-        
-        //nicki graczy
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            //playRuletka();
         }
 
         public void playGame()
@@ -112,10 +119,50 @@ namespace karcioszki
             if (row_indeks == selectedIndexColor && col_indeks == selectedIndexFigure)
             {
                 MessageBox.Show("dobrze strzeliles", "Wygrales!");
+                punkty = 1;
             }
             else
             {
                 MessageBox.Show($"Zle strzeliles. Wartości: kolor = {card_color}, figura = {card_figure}", "Przegrales!");
+                punkty = 0;
+            }
+
+            nameList.Add(playersNick.playerTextBoxes[currentPlayerIndex].Text);
+            scoreList.Add(punkty);
+
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= playersNick.uczestnicy.SelectedNumberOfPlayers)
+            {
+                currentPlayerIndex = 0;
+                saveResultsToCSV();
+                MessageBox.Show("Gra zakończona. Wyniki zostały zapisane do pliku CSV.");
+            }
+            else
+            {
+                label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
+            }
+        }
+
+        private void saveResultsToCSV()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Pliki CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Wybierz miejsce zapisu tabeli wyników";
+            saveFileDialog.FileName = "wyniki.csv";
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine("Nick, Wynik");
+                    for (int i = 0; i < nameList.Count; i++)
+                    {
+                        writer.WriteLine($"{nameList[i]}, {scoreList[i]}");
+                    }
+                }
             }
         }
         //obrazek
@@ -126,7 +173,15 @@ namespace karcioszki
 
         private void PIOTRUS_Load(object sender, EventArgs e)
         {
+            if (playersNick.playerTextBoxes.Length > 0)
+                label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
+       
+       
     }
 }

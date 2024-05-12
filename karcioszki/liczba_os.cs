@@ -16,54 +16,55 @@ namespace karcioszki
         Form1 form1;
         PIOTRUS piotrus;
         playersNick playersNick;
-        //public int SelectedNumberOfPlayers;
-        public liczba_os(Form1 form1)
+        public int SelectedNumberOfPlayers;
+        public liczba_os(Form1 form1, playersNick playersNick)
         {
             InitializeComponent();
             this.form1 = form1;
+            this.playersNick = playersNick;
         }
         // 2 osoby
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             //form1.osoby = checkBox1.Text;
-            playersNick.liczbaGraczy = 2;
+            SelectedNumberOfPlayers = 2;
             startGry();
         }
         //3 osoby
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             //form1.osoby = checkBox2.Text;
-            playersNick.liczbaGraczy = 3;
+            SelectedNumberOfPlayers = 3;
             startGry();
         }
         // 4 osoby
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             //form1.osoby = checkBox3.Text;
-            playersNick.liczbaGraczy = 4;
+            SelectedNumberOfPlayers = 4;
             startGry();
         }
         // 5 osob
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             //form1.osoby = checkBox4.Text;
-            playersNick.liczbaGraczy = 5;
+            SelectedNumberOfPlayers = 5;
             startGry();
         }
         // 6 osob
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
             //form1.osoby = checkBox5.Text;
-            playersNick.liczbaGraczy = 6;
+            SelectedNumberOfPlayers = 6;
             startGry();
         }
         private void startGry()
         {
-            if (this.piotrus == null || piotrus.IsDisposed)
+            if (this.playersNick == null || playersNick.IsDisposed)
             {
-                this.piotrus = new PIOTRUS(this.form1);
-                this.piotrus.Show();
-                this.piotrus.Focus();
+                this.playersNick = new playersNick(this.form1, this);
+                this.playersNick.Show();
+                this.playersNick.Focus();
                 /*if (checkBox1.Checked)
                 {
                     SelectedNumberOfPlayers = 2;
@@ -86,7 +87,7 @@ namespace karcioszki
                 }*/
                 return;
             }
-            this.piotrus.Focus();
+            this.playersNick.Focus();
             
 
         }

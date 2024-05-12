@@ -29,22 +29,34 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 70);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(110, 20);
             label1.TabIndex = 0;
             label1.Text = "Podaj swój nick";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(583, 366);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "GRAJ";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // playersNick
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(label1);
             Name = "playersNick";
             Text = "playersNick";
@@ -56,5 +68,6 @@
         #endregion
 
         private Label label1;
+        private Button button1;
     }
 }

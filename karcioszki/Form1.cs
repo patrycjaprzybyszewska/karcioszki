@@ -4,10 +4,11 @@ namespace karcioszki
     {
         liczba_os uczestnicy;
         public string osoby;
+        playersNick PlayersNick;
         public Form1()
         {
             InitializeComponent();
-            wojna2 = new Wojna2();
+            //wojna2 = new Wojna2();
             Console.SetOut(new DebugTextWriter());
         }
        
@@ -17,7 +18,7 @@ namespace karcioszki
         {
             if (this.uczestnicy == null || uczestnicy.IsDisposed)
             {
-                this.uczestnicy = new liczba_os(this);
+                this.uczestnicy = new liczba_os(this, this.PlayersNick);
                 this.uczestnicy.Show();
                 this.uczestnicy.Focus();
                 return;
@@ -27,7 +28,7 @@ namespace karcioszki
 
         private void button2_Click(object sender, EventArgs e)
         {
-            wojna2.Show();
+            //wojna2.Show();
             this.Hide();
         }
     }

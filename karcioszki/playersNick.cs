@@ -12,15 +12,29 @@ namespace karcioszki
 {
     public partial class playersNick : Form
     {
-        Form1 form1;
+        public Form1 form1;
         public int liczbaGraczy;
-        liczba_os uczestnicy;
-        public playersNick(int liczbaGraczy, Form1 form1)
+        public liczba_os uczestnicy;
+        PIOTRUS piotrus;
+        public TextBox[] playerTextBoxes;
+        public playersNick(Form1 form1, liczba_os uczestnicy)
         {
             InitializeComponent();
             this.liczbaGraczy = liczbaGraczy;
             this.form1 = form1;
+            this.uczestnicy = uczestnicy;
+            this.form1 = form1;
+            playerTextBoxes = new TextBox[uczestnicy.SelectedNumberOfPlayers];
+
+            for (int i = 0; i < uczestnicy.SelectedNumberOfPlayers; i++)
+            {
+                TextBox textBox = new TextBox();
+                textBox.Location = new Point(20, 50 + i * 30); // Ustawienie lokalizacji każdego pola TextBox
+                this.Controls.Add(textBox); // Dodanie pola TextBox do formularza
+                playerTextBoxes[i] = textBox; // Dodanie pola TextBox do tablicy
+            }
         }
+      
 
         private void playersNick_Load(object sender, EventArgs e)
         {
@@ -29,7 +43,31 @@ namespace karcioszki
 
         private void addPlayers(object sender, EventArgs e)
         {
-            
+
+        }
+        // guzior graj
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.piotrus == null || piotrus.IsDisposed)
+            {
+                this.piotrus = new PIOTRUS(this);
+                this.piotrus.Show();
+                this.piotrus.Focus();
+
+                return;
+            }
+            this.piotrus.Focus();
+        }
+        //tu wprowadzamy nick
+        
+        private void writeNick(object sender, EventArgs e)
+        {
+            List<string> playerNames = new List<string>(); 
+
+            foreach (TextBox textBox in playerTextBoxes)
+            {
+                playerNames.Add(textBox.Text); // Dodanie zawartości pola TextBox do listy
+            }
         }
     }
 }
