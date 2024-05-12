@@ -17,6 +17,7 @@ namespace karcioszki
     {
         Form1 form1;
         createTable class1;
+        playersNick playersNick;
         public int[,] tab_card;
         public int selectedIndexColor;
         public int selectedIndexFigure;

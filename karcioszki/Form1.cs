@@ -4,16 +4,12 @@ namespace karcioszki
     {
         liczba_os uczestnicy;
         public string osoby;
-        public int LiczbaGraczy { get; private set; }
         public Form1()
         {
             InitializeComponent();
             Console.SetOut(new DebugTextWriter());
         }
-        public void SetLiczbaGraczy(int liczba) // Metoda do ustawienia liczby graczy
-        {
-            LiczbaGraczy = liczba;
-        }
+       
         //piotrus
 
         private void button4_Click(object sender, EventArgs e)

@@ -12,14 +12,24 @@ namespace karcioszki
 {
     public partial class playersNick : Form
     {
-        public playersNick()
+        Form1 form1;
+        public int liczbaGraczy;
+        liczba_os uczestnicy;
+        public playersNick(int liczbaGraczy, Form1 form1)
         {
             InitializeComponent();
+            this.liczbaGraczy = liczbaGraczy;
+            this.form1 = form1;
         }
 
         private void playersNick_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void addPlayers(object sender, EventArgs e)
+        {
+            
         }
     }
 }
