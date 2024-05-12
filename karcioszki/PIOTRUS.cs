@@ -70,7 +70,7 @@ namespace karcioszki
         {
             Random rnd = new Random();
             row_indeks = rnd.Next(0, 4); // kolory
-            col_indeks = rnd.Next(0, 13); // figury
+            col_indeks = rnd.Next(2, 14); // figury
 
             switch (row_indeks)
             {
@@ -97,22 +97,22 @@ namespace karcioszki
                 card_figure = "J";
                 label5.Text = card_figure;
             }
-            if (col_indeks == 10)
+            else if (col_indeks == 10)
             {
                 card_figure = "Q";
                 label5.Text = card_figure;
             }
-            if (col_indeks == 11)
+            else if (col_indeks == 11)
             {
                 card_figure = "K";
                 label5.Text = card_figure;
             }
-            if (col_indeks == 12)
+            else if (col_indeks == 12)
             {
                 card_figure = "AS";
                 label5.Text = card_figure;
             }
-            if (col_indeks == 13)
+            else if (col_indeks == 13)
             {
                 card_figure = "JOCKER";
                 label5.Text = card_figure;
