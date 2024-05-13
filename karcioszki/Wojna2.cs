@@ -22,10 +22,6 @@ namespace karcioszki
             "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
         };
 
-        private List<string> suits = new List<string>()
-        {
-            "♠", "♥", "♦", "♣"
-        };
 
         private Queue<string> player1Cards = new Queue<string>();
         private PictureBox pictureBox1;
