@@ -19,8 +19,7 @@ namespace karcioszki
 
         public void button4_Click(object sender, EventArgs e)
         {
-            playersNick nickForm = new playersNick(this, uczestnicy);
-            nickForm.Show();
+           
             button4WasClicked = true;
             if (this.uczestnicy == null || uczestnicy.IsDisposed)
             {

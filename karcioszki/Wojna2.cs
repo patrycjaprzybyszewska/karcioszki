@@ -22,6 +22,8 @@ namespace karcioszki
         liczba_os uczestnicy;
         private ResourceManager resources;
         public int punkty = 0;
+        public int punkty2 = 0;
+        
         private List<string> cards = new List<string>()
         {
             "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
@@ -41,6 +43,10 @@ namespace karcioszki
         private Label label3;
         public List<string> nameList;
         private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
         private Queue<string> player2Cards = new Queue<string>();
 
         public Wojna2(playersNick playersNick)
@@ -58,7 +64,7 @@ namespace karcioszki
         private void Wojna2_Load(object sender, EventArgs e)
         {
             // Rozdaj karty graczom
-           
+
 
         }
 
@@ -76,6 +82,10 @@ namespace karcioszki
             button1 = new Button();
             label3 = new Label();
             label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -131,11 +141,11 @@ namespace karcioszki
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(753, 612);
+            label3.Location = new Point(596, 612);
             label3.Name = "label3";
-            label3.Size = new Size(135, 25);
+            label3.Size = new Size(238, 25);
             label3.TabIndex = 5;
-            label3.Text = "Liczba punktów";
+            label3.Text = "Liczba punktów użytkownika";
             label3.Click += label3_Click;
             // 
             // label4
@@ -143,14 +153,57 @@ namespace karcioszki
             label4.AutoSize = true;
             label4.Location = new Point(960, 612);
             label4.Name = "label4";
-            label4.Size = new Size(59, 25);
+            label4.Size = new Size(22, 25);
             label4.TabIndex = 6;
-            label4.Text = "label4";
+            label4.Text = "0";
             label4.Click += label4_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 612);
+            label5.Name = "label5";
+            label5.Size = new Size(238, 25);
+            label5.TabIndex = 7;
+            label5.Text = "Liczba punktów użytkownika";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(370, 612);
+            label6.Name = "label6";
+            label6.Size = new Size(22, 25);
+            label6.TabIndex = 8;
+            label6.Text = "0";
+            label6.Click += label6_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(191, 637);
+            label7.Name = "label7";
+            label7.Size = new Size(59, 25);
+            label7.TabIndex = 9;
+            label7.Text = "label7";
+            label7.Click += label7_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(765, 651);
+            label8.Name = "label8";
+            label8.Size = new Size(59, 25);
+            label8.TabIndex = 10;
+            label8.Text = "label8";
+            label8.Click += label8_Click;
             // 
             // Wojna2
             // 
             ClientSize = new Size(1229, 725);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(button1);
@@ -167,6 +220,8 @@ namespace karcioszki
 
         private void button1_Click(object sender, EventArgs e)
         {
+            label7.Text = playersNick.playerTextBoxes[0].Text;
+            label8.Text = playersNick.playerTextBoxes[1].Text;
             Random rnd = new Random();
             int randomNumber = rnd.Next(1, 13);
             int randomNumber2 = rnd.Next(1, 13);
@@ -193,7 +248,7 @@ namespace karcioszki
                         card = "K";
                         break;
                     default:
-                        card = "Unknown"; // W razie nieprzewidzianego numeru
+                       card = "Joker"; // W razie nieprzewidzianego numeru
                         break;
                 }
             }
@@ -250,7 +305,7 @@ namespace karcioszki
             {
                 MessageBox.Show("Podana ścieżka do folderu nie istnieje.");
             }
-           if (randomNumber > randomNumber2)
+            if (randomNumber > randomNumber2)
             {
                 punkty++;
 
@@ -258,10 +313,50 @@ namespace karcioszki
 
                 label4.Text = punkty.ToString();
             }
+            if (randomNumber < randomNumber2)
+            {
+                punkty2++;
+                label6.Text = punkty2.ToString();
+            }
+            if(punkty == 20 || punkty2 == 20 )
+            {
+                if (punkty > punkty2)
+                {
+                    saveResultsToCSV();
+                    MessageBox.Show("Gra zakończona. " + label8.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
+                    Application.Exit();
+                }
+                if (punkty < punkty2)
+                {
+                    saveResultsToCSV();
+                    MessageBox.Show("Gra zakończona. " + label7.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
+                    Application.Exit();
+                }
+            }
         }
 
+        private void saveResultsToCSV()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Pliki CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Wybierz miejsce zapisu tabeli wyników";
+            saveFileDialog.FileName = "wyniki.csv";
+            saveFileDialog.RestoreDirectory = true;
 
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
 
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine("Nick, Wynik");
+                    for (int i = 0; i < nameList.Count; i++)
+                    {
+                        writer.WriteLine($"{nameList[i]}, {scoreList[i]}");
+                    }
+                }
+            }
+        }
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
@@ -278,6 +373,22 @@ namespace karcioszki
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

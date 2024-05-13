@@ -15,8 +15,9 @@ namespace karcioszki
 
         Form1 form1;
         PIOTRUS piotrus;
-        Wojna2 Wojna2;
+        Wojna2 Wojna;
         playersNick playersNick;
+        public bool button2WasClicked = false;
         public int SelectedNumberOfPlayers;
         public liczba_os(Form1 form1, playersNick playersNick)
         {
@@ -61,6 +62,11 @@ namespace karcioszki
         }
         private void startGry()
         {
+            if(form1.button2WasClicked == true)
+            {
+                DialogResult result = MessageBox.Show("Wojna jest grą dla dwóch osób");
+                SelectedNumberOfPlayers = 2;
+            }
             if (this.playersNick == null || playersNick.IsDisposed)
             {
                 this.playersNick = new playersNick(this.form1, this);

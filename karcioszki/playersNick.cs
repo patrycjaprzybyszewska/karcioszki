@@ -26,7 +26,7 @@ namespace karcioszki
             this.uczestnicy = uczestnicy;
             this.form1 = form1;
            
-            playerTextBoxes = new TextBox[uczestnicy.SelectedNumberOfPlayers];
+           playerTextBoxes = new TextBox[uczestnicy.SelectedNumberOfPlayers];
 
             for (int i = 0; i < uczestnicy.SelectedNumberOfPlayers; i++)
             {
