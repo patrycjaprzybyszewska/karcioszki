@@ -117,7 +117,8 @@ namespace karcioszki
                 card_figure = "JOCKER";
                 label5.Text = card_figure;
             }
-            else { 
+            else
+            {
                 card_figure = col_indeks.ToString();
                 label5.Text = card_figure;
             }
@@ -179,7 +180,7 @@ namespace karcioszki
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+          //  Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png"); SKOM FOTKA
         }
 
         private void PIOTRUS_Load(object sender, EventArgs e)
@@ -187,7 +188,7 @@ namespace karcioszki
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
 
-            pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+        //    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png"); SKOMENTOWAMA FOTKA
 
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
@@ -200,7 +201,12 @@ namespace karcioszki
         //d ofigury wpis
         private void label5_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

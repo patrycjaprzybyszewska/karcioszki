@@ -15,6 +15,11 @@ namespace karcioszki
 
     public partial class Wojna2 : Form
     {
+        Form1 form1;
+        createTable class1;
+        playersNick playersNick;
+        public List<int> scoreList;
+        liczba_os uczestnicy;
         private ResourceManager resources;
         public int punkty = 0;
         private List<string> cards = new List<string>()
@@ -22,6 +27,10 @@ namespace karcioszki
             "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
         };
 
+        private List<string> suits = new List<string>()
+        {
+            "♠", "♥", "♦", "♣"
+        };
 
         private Queue<string> player1Cards = new Queue<string>();
         private PictureBox pictureBox1;
@@ -30,19 +39,26 @@ namespace karcioszki
         private Label label2;
         private Button button1;
         private Label label3;
+        public List<string> nameList;
         private Label label4;
         private Queue<string> player2Cards = new Queue<string>();
 
-        public Wojna2()
+        public Wojna2(playersNick playersNick)
         {
             InitializeComponent();
+            this.playersNick = playersNick;
+            this.class1 = new createTable();
+            this.form1 = playersNick.form1;
+            this.uczestnicy = playersNick.uczestnicy;
+            nameList = new List<string>();
+            scoreList = new List<int>();
 
         }
 
         private void Wojna2_Load(object sender, EventArgs e)
         {
             // Rozdaj karty graczom
-
+           
 
         }
 

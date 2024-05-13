@@ -37,17 +37,18 @@
             // button1
             // 
             button1.Location = new Point(115, 159);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 0;
             button1.Text = "MAKAO";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
             button2.Location = new Point(115, 229);
-            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(112, 34);
             button2.TabIndex = 1;
@@ -58,7 +59,7 @@
             // button3
             // 
             button3.Location = new Point(115, 284);
-            button3.Margin = new Padding(2, 2, 2, 2);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
             button3.TabIndex = 2;
@@ -68,7 +69,7 @@
             // button4
             // 
             button4.Location = new Point(115, 350);
-            button4.Margin = new Padding(2, 2, 2, 2);
+            button4.Margin = new Padding(2);
             button4.Name = "button4";
             button4.Size = new Size(112, 34);
             button4.TabIndex = 3;

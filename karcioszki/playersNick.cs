@@ -16,6 +16,7 @@ namespace karcioszki
         public int liczbaGraczy;
         public liczba_os uczestnicy;
         PIOTRUS piotrus;
+        Wojna2 Wojna;
         public TextBox[] playerTextBoxes;
         public playersNick(Form1 form1, liczba_os uczestnicy)
         {
@@ -24,6 +25,7 @@ namespace karcioszki
             this.form1 = form1;
             this.uczestnicy = uczestnicy;
             this.form1 = form1;
+           
             playerTextBoxes = new TextBox[uczestnicy.SelectedNumberOfPlayers];
 
             for (int i = 0; i < uczestnicy.SelectedNumberOfPlayers; i++)
@@ -48,16 +50,32 @@ namespace karcioszki
         // guzior graj
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.piotrus == null || piotrus.IsDisposed)
+            if (form1.button4WasClicked == true)
             {
-                this.piotrus = new PIOTRUS(this);
-                this.piotrus.Show();
-                this.piotrus.Focus();
+                if (this.piotrus == null || piotrus.IsDisposed)
+                {
+                    this.piotrus = new PIOTRUS(this);
+                    this.piotrus.Show();
+                    this.piotrus.Focus();
 
-                return;
+                    return;
+                }
+                this.piotrus.Focus();
             }
-            this.piotrus.Focus();
-        }
+           if (form1.button2WasClicked == true)
+            {
+
+
+                if (this.Wojna == null || Wojna.IsDisposed)
+                {
+                    this.Wojna = new Wojna2(this);
+                    this.Wojna.Show();
+                    this.Wojna.Focus();
+
+                    return;
+                }
+                this.Wojna.Focus();
+            } }
         //tu wprowadzamy nick
         
         private void writeNick(object sender, EventArgs e)

@@ -44,18 +44,20 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "trefl", "karo", "kier", "pik" });
-            comboBox1.Location = new Point(470, 88);
+            comboBox1.Location = new Point(588, 110);
+            comboBox1.Margin = new Padding(4, 4, 4, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
+            comboBox1.Size = new Size(188, 33);
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(470, 53);
+            label1.Location = new Point(588, 66);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(133, 20);
+            label1.Size = new Size(163, 25);
             label1.TabIndex = 1;
             label1.Text = "Obstaw kolor karty";
             // 
@@ -63,26 +65,29 @@
             // 
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "AS", "JOCKER" });
-            comboBox2.Location = new Point(470, 183);
+            comboBox2.Location = new Point(588, 229);
+            comboBox2.Margin = new Padding(4, 4, 4, 4);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
+            comboBox2.Size = new Size(188, 33);
             comboBox2.TabIndex = 2;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(470, 138);
+            label2.Location = new Point(588, 172);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(138, 20);
+            label2.Size = new Size(168, 25);
             label2.TabIndex = 3;
             label2.Text = "Obstaw figure karty";
             // 
             // button1
             // 
-            button1.Location = new Point(470, 275);
+            button1.Location = new Point(588, 344);
+            button1.Margin = new Padding(4, 4, 4, 4);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(118, 36);
             button1.TabIndex = 4;
             button1.Text = "GRAJ";
             button1.UseVisualStyleBackColor = true;
@@ -90,9 +95,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(64, 88);
+            pictureBox1.Location = new Point(80, 110);
+            pictureBox1.Margin = new Padding(4, 4, 4, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(139, 262);
+            pictureBox1.Size = new Size(174, 328);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -100,9 +106,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(294, 138);
+            label3.Location = new Point(368, 172);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(59, 25);
             label3.TabIndex = 8;
             label3.Text = "label3";
             label3.Click += label3_Click;
@@ -110,26 +117,29 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(294, 96);
+            label4.Location = new Point(368, 120);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(35, 20);
+            label4.Size = new Size(43, 25);
             label4.TabIndex = 9;
             label4.Text = "Gra:";
+            label4.Click += label4_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(108, 388);
+            label5.Location = new Point(135, 485);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(0, 20);
+            label5.Size = new Size(0, 25);
             label5.TabIndex = 10;
             label5.Click += label5_Click;
             // 
             // PIOTRUS
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -139,6 +149,7 @@
             Controls.Add(comboBox2);
             Controls.Add(label1);
             Controls.Add(comboBox1);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PIOTRUS";
             Text = "PIOTRUS";
             Load += PIOTRUS_Load;
