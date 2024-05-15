@@ -7,6 +7,7 @@ namespace karcioszki
         playersNick PlayersNick;
         public bool button4WasClicked = false;
         public bool button2WasClicked = false;
+        public bool button1WasClicked = false;
         public Form1()
         {
             InitializeComponent();
@@ -46,7 +47,15 @@ namespace karcioszki
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-        }
+            button1WasClicked = true;
+			if (this.uczestnicy == null || uczestnicy.IsDisposed)
+			{
+				this.uczestnicy = new liczba_os(this, this.PlayersNick);
+				this.uczestnicy.Show();
+				this.uczestnicy.Focus();
+				return;
+			}
+			this.uczestnicy.Focus();
+		}
     }
 }
