@@ -22,6 +22,18 @@ namespace karcioszki
 			this.playersNick = playersNick;
 			this.form1 = playersNick.form1;
 			this.uczestnicy = playersNick.uczestnicy;
+			SetBackgroundImage();
+		}
+
+		private void SetBackgroundImage()
+		{
+			string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "trawa.jpg");
+
+			if(System.IO.File.Exists(imagePath))
+			{
+				this.BackgroundImage = Image.FromFile(imagePath);
+				this.BackgroundImageLayout = ImageLayout.Stretch;
+			}
 		}
     }
 }
