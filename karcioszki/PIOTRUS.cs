@@ -49,6 +49,18 @@ namespace karcioszki
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            SetBackgroundImage();
+        }
+
+        private void SetBackgroundImage()
+        {
+            string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "niebo.jpg");
+
+            if (System.IO.File.Exists(imagePath))
+            {
+                this.BackgroundImage = Image.FromFile(imagePath);
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
         }
 
         // obstawianie koloru karty
