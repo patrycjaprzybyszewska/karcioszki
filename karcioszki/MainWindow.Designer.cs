@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
         /// <summary>
         ///  Required method for Designer support - do not modify
@@ -105,9 +105,9 @@
             ResumeLayout(false);
         }
 
-        #endregion
+		#endregion
 
-        private Button button1;
+		private Button button1;
         private Button button2;
         private Button MemoryButton;
         private Button button4;

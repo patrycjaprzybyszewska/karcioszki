@@ -12,9 +12,28 @@ namespace karcioszki
 {
     public partial class Form2 : Form
     {
-        public Form2()
+		playersNick playersNick;
+		liczba_os uczestnicy;
+		Form1 form1;
+
+		public Form2(playersNick playersNick)
         {
             InitializeComponent();
-        }
+			this.playersNick = playersNick;
+			this.form1 = playersNick.form1;
+			this.uczestnicy = playersNick.uczestnicy;
+			SetBackgroundImage();
+		}
+
+		private void SetBackgroundImage()
+		{
+			string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "trawa.jpg");
+
+			if(System.IO.File.Exists(imagePath))
+			{
+				this.BackgroundImage = Image.FromFile(imagePath);
+				this.BackgroundImageLayout = ImageLayout.Stretch;
+			}
+		}
     }
 }

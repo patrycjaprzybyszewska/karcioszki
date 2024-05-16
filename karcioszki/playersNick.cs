@@ -13,6 +13,8 @@ namespace karcioszki
     public partial class playersNick : Form
     {
         public MainWindow form1;
+        public Form1 form1;
+        public Form2 form2;
         public int liczbaGraczy;
         public liczba_os uczestnicy;
         Ruletka piotrus;
@@ -62,7 +64,7 @@ namespace karcioszki
                 }
                 this.piotrus.Focus();
             }
-           if (form1.button2WasClicked == true)
+            if (form1.button2WasClicked == true)
             {
 
 
@@ -75,7 +77,22 @@ namespace karcioszki
                     return;
                 }
                 this.Wojna.Focus();
-            } }
+            }
+			if (form1.button1WasClicked == true)
+			{
+
+
+				if (this.form2 == null || form2.IsDisposed)
+				{
+					this.form2 = new Form2(this);
+					this.form2.Show();
+					this.form2.Focus();
+
+					return;
+				}
+				this.form2.Focus();
+			}
+		}
         //tu wprowadzamy nick
         
         private void writeNick(object sender, EventArgs e)

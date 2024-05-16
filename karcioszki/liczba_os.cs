@@ -18,15 +18,38 @@ namespace karcioszki
         Wojna2 Wojna;
         playersNick playersNick;
         public bool button2WasClicked = false;
+        public bool button1WasClicked = false;
         public int SelectedNumberOfPlayers;
         public liczba_os(MainWindow form1, playersNick playersNick)
         {
             InitializeComponent();
             this.form1 = form1;
             this.playersNick = playersNick;
+
+            if (form1.button1WasClicked == true)
+            {
+                checkBox4.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
+                checkBox5.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
+            }
         }
-        // 2 osoby
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (form1.button1WasClicked)
+            {
+                CheckBox checkBox = sender as CheckBox;
+
+                if (checkBox != null && checkBox.Checked)
+                {
+                    checkBox.Checked = false;
+					//MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+            }
+        }
+
+		// 2 osoby
+		private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
             SelectedNumberOfPlayers = 2;
@@ -62,7 +85,13 @@ namespace karcioszki
         }
         private void startGry()
         {
-            if(form1.button2WasClicked == true)
+			if (button1WasClicked && (SelectedNumberOfPlayers == 5 || SelectedNumberOfPlayers == 6))
+            {
+				if (SelectedNumberOfPlayers == 5) checkBox4.Checked = false;
+				if (SelectedNumberOfPlayers == 6) checkBox5.Checked = false;
+				return;
+			}
+			if (form1.button2WasClicked == true)
             {
                 DialogResult result = MessageBox.Show("Wojna jest grą dla dwóch osób");
                 SelectedNumberOfPlayers = 2;
