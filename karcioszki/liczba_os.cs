@@ -91,22 +91,23 @@ namespace karcioszki
 				if (SelectedNumberOfPlayers == 6) checkBox5.Checked = false;
 				return;
 			}
-			if (form1.button2WasClicked == true)
+            else
             {
-                DialogResult result = MessageBox.Show("Wojna jest grą dla dwóch osób");
-                SelectedNumberOfPlayers = 2;
-            }
-            if (this.playersNick == null || playersNick.IsDisposed)
-            {
-                this.playersNick = new playersNick(this.form1, this);
-                this.playersNick.Show();
-                this.playersNick.Focus();
+				if (form1.button2WasClicked == true)
+				{
+					DialogResult result = MessageBox.Show("Wojna jest grą dla dwóch osób");
+					SelectedNumberOfPlayers = 2;
+				}
+				if (this.playersNick == null || playersNick.IsDisposed)
+				{
+					this.playersNick = new playersNick(this.form1, this);
+					this.playersNick.Show();
+					this.playersNick.Focus();
 
-                return;
-            }
-            this.playersNick.Focus();
-
-
+					return;
+				}
+				this.playersNick.Focus();
+			}
         }
 
         private void label1_Click(object sender, EventArgs e)
