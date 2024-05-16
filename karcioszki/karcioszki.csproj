@@ -8,4 +8,49 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="2.png" />
+    <None Remove="3.png" />
+    <None Remove="4.png" />
+    <None Remove="images\back.png" />
+    <None Remove="images\darkbam.png" />
+    <None Remove="images\goro.png" />
+    <None Remove="images\isaac.png" />
+    <None Remove="images\kiriu.png" />
+    <None Remove="images\monkey.png" />
+    <None Remove="images\wizard.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\back.png" />
+    <Content Include="images\darkbam.png" />
+    <Content Include="images\goro.png" />
+    <Content Include="images\isaac.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\kier.png" />
+    <Content Include="images\kiriu.png" />
+    <Content Include="images\monkey.png" />
+    <Content Include="images\trefl.png" />
+    <Content Include="images\pik.png" />
+    <Content Include="images\karo.png" />
+    <Content Include="images\wizard.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

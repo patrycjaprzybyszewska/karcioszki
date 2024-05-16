@@ -15,7 +15,7 @@ namespace karcioszki
 
     public partial class Wojna2 : Form
     {
-        Form1 form1;
+        MainWindow form1;
         createTable class1;
         playersNick playersNick;
         public List<int> scoreList;

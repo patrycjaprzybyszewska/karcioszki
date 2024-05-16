@@ -1,6 +1,6 @@
 ﻿namespace karcioszki
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,16 +30,18 @@
         {
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            MemoryButton = new Button();
             button4 = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(115, 159);
-            button1.Margin = new Padding(2);
+            button1.Location = new Point(0, 20);
+            button1.Margin = new Padding(0, 20, 0, 20);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(78, 20);
             button1.TabIndex = 0;
             button1.Text = "MAKAO";
             button1.UseVisualStyleBackColor = true;
@@ -47,48 +49,59 @@
             // 
             // button2
             // 
-            button2.Location = new Point(115, 229);
-            button2.Margin = new Padding(2);
+            button2.Location = new Point(0, 80);
+            button2.Margin = new Padding(0, 20, 0, 20);
             button2.Name = "button2";
-            button2.Size = new Size(112, 34);
+            button2.Size = new Size(78, 20);
             button2.TabIndex = 1;
             button2.Text = "WOJNA";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button3
+            // MemoryButton
             // 
-            button3.Location = new Point(115, 284);
-            button3.Margin = new Padding(2);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 34);
-            button3.TabIndex = 2;
-            button3.Text = "MEMORY";
-            button3.UseVisualStyleBackColor = true;
+            MemoryButton.Location = new Point(0, 140);
+            MemoryButton.Margin = new Padding(0, 20, 0, 20);
+            MemoryButton.Name = "MemoryButton";
+            MemoryButton.Size = new Size(78, 20);
+            MemoryButton.TabIndex = 2;
+            MemoryButton.Text = "MEMORY";
+            MemoryButton.UseVisualStyleBackColor = true;
+            MemoryButton.Click += MemoryButton_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(115, 350);
-            button4.Margin = new Padding(2);
+            button4.Location = new Point(0, 200);
+            button4.Margin = new Padding(0, 20, 0, 20);
             button4.Name = "button4";
-            button4.Size = new Size(112, 34);
+            button4.Size = new Size(78, 20);
             button4.TabIndex = 3;
             button4.Text = "RULETKA";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // Form1
+            // flowLayoutPanel1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            flowLayoutPanel1.Controls.Add(button1);
+            flowLayoutPanel1.Controls.Add(button2);
+            flowLayoutPanel1.Controls.Add(MemoryButton);
+            flowLayoutPanel1.Controls.Add(button4);
+            flowLayoutPanel1.Location = new Point(100, 50);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(80, 265);
+            flowLayoutPanel1.TabIndex = 4;
+            // 
+            // MainWindow
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(381, 559);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Margin = new Padding(2);
-            Name = "Form1";
-            Text = "Form1";
+            ClientSize = new Size(284, 361);
+            Controls.Add(flowLayoutPanel1);
+            Margin = new Padding(1);
+            Name = "MainWindow";
+            Text = "MainWindow";
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -96,7 +109,8 @@
 
         private Button button1;
         private Button button2;
-        private Button button3;
+        private Button MemoryButton;
         private Button button4;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
