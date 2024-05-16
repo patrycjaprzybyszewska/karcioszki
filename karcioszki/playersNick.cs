@@ -13,7 +13,7 @@ namespace karcioszki
     public partial class playersNick : Form
     {
         public MainWindow form1;
-        public Form1 form1;
+        public Form1 form;
         public Form2 form2;
         public int liczbaGraczy;
         public liczba_os uczestnicy;
