@@ -26,27 +26,22 @@ namespace karcioszki
             this.form1 = form1;
             this.playersNick = playersNick;
 
-            if (form1.button1WasClicked == true)
-            {
-                checkBox4.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
-                checkBox5.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
-            }
-        }
+			if (form1.button1WasClicked)
+			{
+				checkBox4.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
+				checkBox5.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
+			}
+		}
 
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
-            if (form1.button1WasClicked)
-            {
-                CheckBox checkBox = sender as CheckBox;
-
-                if (checkBox != null && checkBox.Checked)
-                {
-                    checkBox.Checked = false;
-					//MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-            }
-        }
+			CheckBox checkBox = sender as CheckBox;
+			if (checkBox != null && checkBox.Checked)
+			{
+				MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				checkBox.Checked = false;
+			}
+		}
 
 		// 2 osoby
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
