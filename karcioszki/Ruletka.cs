@@ -14,13 +14,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 namespace karcioszki
 {
 
-    public partial class PIOTRUS : Form
+    public partial class Ruletka : Form
     {
-        Form1 form1;
+        MainWindow form1;
         createTable class1;
         playersNick playersNick;
         liczba_os uczestnicy;
-
 
         public int[,] tab_card;
         public int selectedIndexColor;
@@ -34,7 +33,7 @@ namespace karcioszki
         public List<string> nameList;
         public List<int> scoreList;
 
-        public PIOTRUS(playersNick playersNick)
+        public Ruletka(playersNick playersNick)
         {
             InitializeComponent();
             this.playersNick = playersNick;
@@ -43,7 +42,6 @@ namespace karcioszki
             this.uczestnicy = playersNick.uczestnicy;
             nameList = new List<string>();
             scoreList = new List<int>();
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         // obstawianie koloru karty
@@ -76,22 +74,23 @@ namespace karcioszki
             {
                 case 0:
                     card_color = "trefl";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\2.png");
+                    pictureBox1.Image = Properties.Resources.trefl; 
                     break;
                 case 1:
                     card_color = "karo";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\4.png");
+                    pictureBox1.Image = Properties.Resources.karo;
                     break;
                 case 2:
                     card_color = "kier";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\1.png");
+                    pictureBox1.Image = Properties.Resources.kier;
                     break;
                 case 3:
                     card_color = "pik";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\3.png");
+                    pictureBox1.Image = Properties.Resources.pik;
                     break;
 
             }
+
             if (col_indeks == 9)
             {
                 card_figure = "J";
@@ -127,14 +126,14 @@ namespace karcioszki
             {
                 MessageBox.Show("dobrze strzeliłeś", "Wygrałeś!");
                 punkty = 1;
-                pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+                pictureBox1.Image = Properties.Resources.back;
                 label5.Text = " ";
             }
             else
             {
                 MessageBox.Show($"Źle strzeliłeś. Wartości karty to: kolor = {card_color}, figura = {card_figure}", "Przegrałeś!");
                 punkty = 0;
-                pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png");
+                pictureBox1.Image = Properties.Resources.back;
                 label5.Text = " ";
             }
 
@@ -178,11 +177,6 @@ namespace karcioszki
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-          //  Image.FromFile("C:\\Users\\LAPTOP\\OneDrive\\Pulpit\\studia\\semestr_4\\p_wizualne\\revers.png"); SKOM FOTKA
-        }
-
         private void PIOTRUS_Load(object sender, EventArgs e)
         {
             if (playersNick.playerTextBoxes.Length > 0)
@@ -193,18 +187,8 @@ namespace karcioszki
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         //d ofigury wpis
         private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
         {
 
         }

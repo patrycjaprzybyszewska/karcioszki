@@ -12,14 +12,15 @@ namespace karcioszki
 {
     public partial class playersNick : Form
     {
+        public MainWindow form1;
         public Form1 form1;
         public Form2 form2;
         public int liczbaGraczy;
         public liczba_os uczestnicy;
-        PIOTRUS piotrus;
+        Ruletka piotrus;
         Wojna2 Wojna;
         public TextBox[] playerTextBoxes;
-        public playersNick(Form1 form1, liczba_os uczestnicy)
+        public playersNick(MainWindow form1, liczba_os uczestnicy)
         {
             InitializeComponent();
             this.liczbaGraczy = liczbaGraczy;
@@ -55,7 +56,7 @@ namespace karcioszki
             {
                 if (this.piotrus == null || piotrus.IsDisposed)
                 {
-                    this.piotrus = new PIOTRUS(this);
+                    this.piotrus = new Ruletka(this);
                     this.piotrus.Show();
                     this.piotrus.Focus();
 

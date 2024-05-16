@@ -13,14 +13,14 @@ namespace karcioszki
     public partial class liczba_os : Form
     {
 
-        Form1 form1;
-        PIOTRUS piotrus;
+        MainWindow form1;
+        Ruletka piotrus;
         Wojna2 Wojna;
         playersNick playersNick;
         public bool button2WasClicked = false;
         public bool button1WasClicked = false;
         public int SelectedNumberOfPlayers;
-        public liczba_os(Form1 form1, playersNick playersNick)
+        public liczba_os(MainWindow form1, playersNick playersNick)
         {
             InitializeComponent();
             this.form1 = form1;
