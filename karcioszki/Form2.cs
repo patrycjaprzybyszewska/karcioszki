@@ -14,7 +14,7 @@ namespace karcioszki
     {
 		playersNick playersNick;
 		liczba_os uczestnicy;
-		Form1 form1;
+		MainWindow form1;
 
 		public Form2(playersNick playersNick)
         {

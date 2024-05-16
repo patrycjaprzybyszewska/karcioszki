@@ -42,8 +42,7 @@ namespace karcioszki
 
                 if (checkBox != null && checkBox.Checked)
                 {
-                    checkBox.Checked = false;
-					//MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
             }
         }
@@ -85,11 +84,13 @@ namespace karcioszki
         }
         private void startGry()
         {
-			if (button1WasClicked && (SelectedNumberOfPlayers == 5 || SelectedNumberOfPlayers == 6))
+			if (button1WasClicked && (checkBox4.Checked == true || checkBox5.Checked == false))
             {
-				if (SelectedNumberOfPlayers == 5) checkBox4.Checked = false;
-				if (SelectedNumberOfPlayers == 6) checkBox5.Checked = false;
-				return;
+				if (form1.button1WasClicked && (SelectedNumberOfPlayers == 5 || SelectedNumberOfPlayers == 6))
+				{
+					MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 			}
             else
             {
