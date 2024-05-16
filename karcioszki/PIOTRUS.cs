@@ -49,19 +49,8 @@ namespace karcioszki
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            SetBackgroundImage();
         }
 
-        private void SetBackgroundImage()
-        {
-            string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "niebo.jpg");
-
-            if (System.IO.File.Exists(imagePath))
-            {
-                this.BackgroundImage = Image.FromFile(imagePath);
-                this.BackgroundImageLayout = ImageLayout.Stretch;
-            }
-        }
 
         // obstawianie koloru karty
         //1. trefl
@@ -76,11 +65,6 @@ namespace karcioszki
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedIndexFigure = comboBox2.SelectedIndex;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // playGame();
         }
 
        
@@ -110,7 +94,7 @@ namespace karcioszki
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
+            Image.FromFile("revers.png");
         }
 
         private void PIOTRUS_Load(object sender, EventArgs e)
@@ -118,9 +102,9 @@ namespace karcioszki
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
 
-            pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
-            pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
-            pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
+            pictureBox1.Image = Image.FromFile("revers.png");
+            pictureBox2.Image = Image.FromFile("revers.png");
+            pictureBox3.Image = Image.FromFile("revers.png");
 
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
@@ -139,12 +123,12 @@ namespace karcioszki
         // karta 2
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
+            Image.FromFile("revers.png");
         }
         // karta 3
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
+            Image.FromFile("revers.png");
         }
         // 1 karta 
         private void button2_Click(object sender, EventArgs e)
@@ -185,19 +169,19 @@ namespace karcioszki
                 {
                     case 0:
                         card_color = "trefl";
-                        pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\1.png");
+                        pictureBox1.Image = Image.FromFile("1.png");
                         break;
                     case 1:
                         card_color = "karo";
-                        pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\3.png");
+                        pictureBox1.Image = Image.FromFile("3.png");
                         break;
                     case 2:
                         card_color = "kier";
-                        pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\4.png");
+                        pictureBox1.Image = Image.FromFile("4.png");
                         break;
                     case 3:
                         card_color = "pik";
-                        pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\2.png");
+                        pictureBox1.Image = Image.FromFile("2.png");
                         break;
 
                 }
@@ -238,19 +222,19 @@ namespace karcioszki
                 {
                     case 0:
                         card_color = "trefl";
-                        pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\1.png");
+                        pictureBox2.Image = Image.FromFile("1.png");
                         break;
                     case 1:
                         card_color = "karo";
-                        pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\3.png");
+                        pictureBox2.Image = Image.FromFile("3.png");
                         break;
                     case 2:
                         card_color = "kier";
-                        pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\4.png");
+                        pictureBox2.Image = Image.FromFile("4.png");
                         break;
                     case 3:
                         card_color = "pik";
-                        pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\2.png");
+                        pictureBox2.Image = Image.FromFile("2.png");
                         break;
 
                 }
@@ -291,19 +275,19 @@ namespace karcioszki
                 {
                     case 0:
                         card_color = "trefl";
-                        pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\1.png");
+                        pictureBox3.Image = Image.FromFile("2.png");
                         break;
                     case 1:
                         card_color = "karo";
-                        pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\3.png");
+                        pictureBox3.Image = Image.FromFile("4.png");
                         break;
                     case 2:
                         card_color = "kier";
-                        pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\4.png");
+                        pictureBox3.Image = Image.FromFile("2.png");
                         break;
                     case 3:
                         card_color = "pik";
-                        pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\2.png");
+                        pictureBox3.Image = Image.FromFile("3.png");
                         break;
 
                 }
@@ -347,18 +331,18 @@ namespace karcioszki
             {
                 MessageBox.Show("dobrze strzeliłeś", "Wygrałeś!");
                 punkty = 1;
-                pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
-                pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
-                pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
+                pictureBox1.Image = Image.FromFile("revers.png");
+                pictureBox2.Image = Image.FromFile("revers.png");
+                pictureBox3.Image = Image.FromFile("revers.png");
                 label6.Text = " ";
             }
             else
             {
                 MessageBox.Show($"Źle strzeliłeś. Wartości karty to: kolor = {card_color}, figura = {card_figure}", "Przegrałeś!");
                 punkty = 0;
-                pictureBox1.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
-                pictureBox2.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
-                pictureBox3.Image = Image.FromFile("C:\\Users\\LAPTOP\\source\\repos\\lab1\\karcioszki\\karcioszki\\revers.png");
+                pictureBox1.Image = Image.FromFile("revers.png");
+                pictureBox2.Image = Image.FromFile("revers.png");
+                pictureBox3.Image = Image.FromFile("revers.png");
                 label6.Text = " ";
             }
 

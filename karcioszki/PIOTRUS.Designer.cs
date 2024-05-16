@@ -32,7 +32,6 @@
             label1 = new Label();
             comboBox2 = new ComboBox();
             label2 = new Label();
-            button1 = new Button();
             pictureBox1 = new PictureBox();
             label3 = new Label();
             label4 = new Label();
@@ -84,16 +83,6 @@
             label2.Size = new Size(138, 20);
             label2.TabIndex = 3;
             label2.Text = "Obstaw figure karty";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(748, 265);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 4;
-            button1.Text = "GRAJ";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // pictureBox1
             // 
@@ -196,7 +185,6 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(pictureBox1);
-            Controls.Add(button1);
             Controls.Add(label2);
             Controls.Add(comboBox2);
             Controls.Add(label1);
@@ -217,7 +205,6 @@
         private Label label1;
         private ComboBox comboBox2;
         private Label label2;
-        private Button button1;
         private PictureBox pictureBox1;
         private Label label3;
         private Label label4;
