@@ -16,6 +16,7 @@ namespace karcioszki
         Form1 form1;
         PIOTRUS piotrus;
         Wojna2 Wojna;
+        Form2 form2;
         playersNick playersNick;
         public bool button2WasClicked = false;
         public bool button1WasClicked = false;
@@ -25,28 +26,7 @@ namespace karcioszki
             InitializeComponent();
             this.form1 = form1;
             this.playersNick = playersNick;
-
-            if (form1.button1WasClicked == true)
-            {
-                checkBox4.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
-                checkBox5.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
-            }
-        }
-
-        private void CheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-            if (form1.button1WasClicked)
-            {
-                CheckBox checkBox = sender as CheckBox;
-
-                if (checkBox != null && checkBox.Checked)
-                {
-                    checkBox.Checked = false;
-					//MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-            }
-        }
+		}
 
 		// 2 osoby
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -85,10 +65,9 @@ namespace karcioszki
         }
         private void startGry()
         {
-			if (button1WasClicked && (SelectedNumberOfPlayers == 5 || SelectedNumberOfPlayers == 6))
+			if (form1.button1WasClicked && (SelectedNumberOfPlayers == 5 || SelectedNumberOfPlayers == 6))
             {
-				if (SelectedNumberOfPlayers == 5) checkBox4.Checked = false;
-				if (SelectedNumberOfPlayers == 6) checkBox5.Checked = false;
+				MessageBox.Show("Wybierz od 2 do 4 graczy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			if (form1.button2WasClicked == true)

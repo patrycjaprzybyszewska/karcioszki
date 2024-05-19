@@ -232,8 +232,9 @@ namespace karcioszki
             Random rnd = new Random();
             int randomNumber = rnd.Next(1, 13);
             int randomNumber2 = rnd.Next(1, 13);
-            string directoryPath = @"C:\Users\patpr\OneDrive\Dokumenty\Grafika\";
-            string card;
+            string directoryPath = @"C:\Users|patpr\OneDrive\Dokumenty\Grafika\";
+
+			string card;
             if (randomNumber >= 2 && randomNumber <= 10)
             {
                 card = randomNumber.ToString(); // Dla liczb od 2 do 10 używamy ich samego
@@ -291,9 +292,9 @@ namespace karcioszki
 
             if (Directory.Exists(directoryPath))
             {
-                string[] cardImages = Directory.GetFiles(directoryPath, "*.png");
+				string[] cardImages = Directory.GetFiles(directoryPath, "*.png");
 
-                if (cardImages.Length > 0)
+				if (cardImages.Length > 0)
                 {
                     // Random rnd = new Random();
                     int index = rnd.Next(cardImages.Length);

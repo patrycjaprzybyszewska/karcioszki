@@ -33,6 +33,9 @@ namespace karcioszki
         public int punkty;
         public List<string> nameList;
         public List<int> scoreList;
+        public bool isClicked_2 = false;
+        public bool isClicked_3 = false;
+        public bool isClicked_4 = false;
 
         public PIOTRUS(playersNick playersNick)
         {
@@ -44,7 +47,10 @@ namespace karcioszki
             nameList = new List<string>();
             scoreList = new List<int>();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
         }
+
 
         // obstawianie koloru karty
         //1. trefl
@@ -61,99 +67,7 @@ namespace karcioszki
             selectedIndexFigure = comboBox2.SelectedIndex;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            playGame();
-        }
-
-        public void playGame()
-        {
-            Random rnd = new Random();
-            row_indeks = rnd.Next(0, 4); // kolory
-            col_indeks = rnd.Next(2, 14); // figury
-
-            switch (row_indeks)
-            {
-                case 0:
-                    card_color = "trefl";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\2.png");
-                    break;
-                case 1:
-                    card_color = "karo";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\4.png");
-                    break;
-                case 2:
-                    card_color = "kier";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\1.png");
-                    break;
-                case 3:
-                    card_color = "pik";
-                    pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\3.png");
-                    break;
-
-            }
-            if (col_indeks == 9)
-            {
-                card_figure = "J";
-                label5.Text = card_figure;
-            }
-            else if (col_indeks == 10)
-            {
-                card_figure = "Q";
-                label5.Text = card_figure;
-            }
-            else if (col_indeks == 11)
-            {
-                card_figure = "K";
-                label5.Text = card_figure;
-            }
-            else if (col_indeks == 12)
-            {
-                card_figure = "AS";
-                label5.Text = card_figure;
-            }
-            else if (col_indeks == 13)
-            {
-                card_figure = "JOCKER";
-                label5.Text = card_figure;
-            }
-            else
-            {
-                card_figure = col_indeks.ToString();
-                label5.Text = card_figure;
-            }
-
-            if (row_indeks == selectedIndexColor && col_indeks == selectedIndexFigure)
-            {
-                MessageBox.Show("dobrze strzeliłeś", "Wygrałeś!");
-                punkty = 1;
-                pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\revers.png");
-                label5.Text = " ";
-            }
-            else
-            {
-                MessageBox.Show($"Źle strzeliłeś. Wartości karty to: kolor = {card_color}, figura = {card_figure}", "Przegrałeś!");
-                punkty = 0;
-                pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\revers.png");
-                label5.Text = " ";
-            }
-
-            nameList.Add(playersNick.playerTextBoxes[currentPlayerIndex].Text);
-            scoreList.Add(punkty);
-
-            currentPlayerIndex++;
-            if (currentPlayerIndex >= playersNick.uczestnicy.SelectedNumberOfPlayers)
-            {
-                currentPlayerIndex = 0;
-                saveResultsToCSV();
-                MessageBox.Show("Gra zakończona. Wyniki zostały zapisane do pliku CSV.");
-                Application.Exit();
-            }
-            else
-            {
-                label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
-            }
-        }
+       
 
         private void saveResultsToCSV()
         {
@@ -180,7 +94,7 @@ namespace karcioszki
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\revers.png"); 
+            Image.FromFile("revers.png");
         }
 
         private void PIOTRUS_Load(object sender, EventArgs e)
@@ -188,7 +102,9 @@ namespace karcioszki
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
 
-           pictureBox1.Image = Image.FromFile("C:\\Users\\patpr\\source\\repos\\karcioszki\\karcioszki\\revers.png"); 
+            pictureBox1.Image = Image.FromFile("revers.png");
+            pictureBox2.Image = Image.FromFile("revers.png");
+            pictureBox3.Image = Image.FromFile("revers.png");
 
             if (playersNick.playerTextBoxes.Length > 0)
                 label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
@@ -198,15 +114,253 @@ namespace karcioszki
         {
 
         }
-        //d ofigury wpis
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+        // karta 2
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Image.FromFile("revers.png");
+        }
+        // karta 3
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Image.FromFile("revers.png");
+        }
+        // 1 karta 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            isClicked_2 = true;
+            playGame();
+            
+        }
+        // 2 karta
+        private void button3_Click(object sender, EventArgs e)
+        {
+            isClicked_3 = true;
+            playGame();
+            
+        }
+        // 3 karta
+        private void button4_Click(object sender, EventArgs e)
+        {
+            isClicked_4 = true;
+            playGame();
+            
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void playGame()
+        {
+
+            Random rnd = new Random();
+            row_indeks = rnd.Next(0, 4); // kolory
+            col_indeks = rnd.Next(2, 14); // figury
+
+            if (isClicked_2 == true)
+            {
+                switch (row_indeks)
+                {
+                    case 0:
+                        card_color = "trefl";
+                        pictureBox1.Image = Image.FromFile("1.png");
+                        break;
+                    case 1:
+                        card_color = "karo";
+                        pictureBox1.Image = Image.FromFile("3.png");
+                        break;
+                    case 2:
+                        card_color = "kier";
+                        pictureBox1.Image = Image.FromFile("4.png");
+                        break;
+                    case 3:
+                        card_color = "pik";
+                        pictureBox1.Image = Image.FromFile("2.png");
+                        break;
+
+                }
+                if (col_indeks == 9)
+                {
+                    card_figure = "J";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 10)
+                {
+                    card_figure = "Q";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 11)
+                {
+                    card_figure = "K";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 12)
+                {
+                    card_figure = "AS";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 13)
+                {
+                    card_figure = "JOCKER";
+                    label6.Text = card_figure;
+                }
+                else
+                {
+                    card_figure = col_indeks.ToString();
+                    label6.Text = card_figure;
+                }
+            }
+            else if (isClicked_3 == true)
+            {
+                switch (row_indeks)
+                {
+                    case 0:
+                        card_color = "trefl";
+                        pictureBox2.Image = Image.FromFile("1.png");
+                        break;
+                    case 1:
+                        card_color = "karo";
+                        pictureBox2.Image = Image.FromFile("3.png");
+                        break;
+                    case 2:
+                        card_color = "kier";
+                        pictureBox2.Image = Image.FromFile("4.png");
+                        break;
+                    case 3:
+                        card_color = "pik";
+                        pictureBox2.Image = Image.FromFile("2.png");
+                        break;
+
+                }
+                if (col_indeks == 9)
+                {
+                    card_figure = "J";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 10)
+                {
+                    card_figure = "Q";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 11)
+                {
+                    card_figure = "K";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 12)
+                {
+                    card_figure = "AS";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 13)
+                {
+                    card_figure = "JOCKER";
+                    label6.Text = card_figure;
+                }
+                else
+                {
+                    card_figure = col_indeks.ToString();
+                    label6.Text = card_figure;
+                }
+            }
+            else if (isClicked_4 == true)
+            {
+                switch (row_indeks)
+                {
+                    case 0:
+                        card_color = "trefl";
+                        pictureBox3.Image = Image.FromFile("2.png");
+                        break;
+                    case 1:
+                        card_color = "karo";
+                        pictureBox3.Image = Image.FromFile("4.png");
+                        break;
+                    case 2:
+                        card_color = "kier";
+                        pictureBox3.Image = Image.FromFile("2.png");
+                        break;
+                    case 3:
+                        card_color = "pik";
+                        pictureBox3.Image = Image.FromFile("3.png");
+                        break;
+
+                }
+                if (col_indeks == 9)
+                {
+                    card_figure = "J";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 10)
+                {
+                    card_figure = "Q";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 11)
+                {
+                    card_figure = "K";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 12)
+                {
+                    card_figure = "AS";
+                    label6.Text = card_figure;
+                }
+                else if (col_indeks == 13)
+                {
+                    card_figure = "JOCKER";
+                    label6.Text = card_figure;
+                }
+                else
+                {
+                    card_figure = col_indeks.ToString();
+                    label6.Text = card_figure;
+                }
+            }
+            isClicked_2 = false;
+            isClicked_3 = false;
+            isClicked_4 = false;
+
+
+            if (row_indeks == selectedIndexColor && col_indeks == selectedIndexFigure)
+            {
+                MessageBox.Show("dobrze strzeliłeś", "Wygrałeś!");
+                punkty = 1;
+                pictureBox1.Image = Image.FromFile("revers.png");
+                pictureBox2.Image = Image.FromFile("revers.png");
+                pictureBox3.Image = Image.FromFile("revers.png");
+                label6.Text = " ";
+            }
+            else
+            {
+                MessageBox.Show($"Źle strzeliłeś. Wartości karty to: kolor = {card_color}, figura = {card_figure}", "Przegrałeś!");
+                punkty = 0;
+                pictureBox1.Image = Image.FromFile("revers.png");
+                pictureBox2.Image = Image.FromFile("revers.png");
+                pictureBox3.Image = Image.FromFile("revers.png");
+                label6.Text = " ";
+            }
+
+            nameList.Add(playersNick.playerTextBoxes[currentPlayerIndex].Text);
+            scoreList.Add(punkty);
+
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= playersNick.uczestnicy.SelectedNumberOfPlayers)
+            {
+                currentPlayerIndex = 0;
+                saveResultsToCSV();
+                MessageBox.Show("Gra zakończona. Wyniki zostały zapisane do pliku CSV.");
+                Application.Exit();
+            }
+            else
+            {
+                label3.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
+            }
         }
     }
 }
