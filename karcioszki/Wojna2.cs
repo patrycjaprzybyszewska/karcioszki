@@ -21,7 +21,7 @@ namespace karcioszki
 
         Form1 form1;
         createTable class1;
-        private System.Windows.Forms.Timer timer;
+        public System.Windows.Forms.Timer timer;
         playersNick playersNick;
         public List<int> scoreList;
         liczba_os uczestnicy;
@@ -46,8 +46,7 @@ namespace karcioszki
         private Label label6;
         private Label label7;
         private Label label8;
-        private Queue<string> player2Cards = new Queue<string>();
-
+     
         public Wojna2(playersNick playersNick)
         {
             InitializeComponent();
@@ -64,7 +63,7 @@ namespace karcioszki
         private void Wojna2_Load(object sender, EventArgs e)
         {
             timer = new System.Windows.Forms.Timer();
-            timer.Interval = 10; 
+            timer.Interval = 1000; 
             timer.Tick += Timer_Tick;
             timer.Start();
 
@@ -351,8 +350,7 @@ namespace karcioszki
             }
             if (liczbKart1 == 0)
             {
-                Application.Exit();
-
+            
                 MessageBox.Show("Skończyły się karty użytkownika " + label8.Text);
 
                 if (punkty > punkty2)
@@ -370,7 +368,7 @@ namespace karcioszki
             }
                 if (liczbKart2 == 0)
                 {
-                Application.Exit();
+              \
                 MessageBox.Show("Skończyły się karty użytkownika " + label7.Text);
 
                 if (punkty > punkty2)
