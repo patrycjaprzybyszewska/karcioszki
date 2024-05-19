@@ -9,12 +9,15 @@ using System.Reflection;
 using System.Resources;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace karcioszki
 {
 
     public partial class Wojna2 : Form
     {
+       
+
         Form1 form1;
         createTable class1;
         playersNick playersNick;
@@ -58,6 +61,7 @@ namespace karcioszki
             this.uczestnicy = playersNick.uczestnicy;
             nameList = new List<string>();
             scoreList = new List<int>();
+            
 
         }
 
@@ -216,10 +220,13 @@ namespace karcioszki
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
+            //InvokeOnClick(button1, EventArgs.Empty);
         }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
             label7.Text = playersNick.playerTextBoxes[0].Text;
             label8.Text = playersNick.playerTextBoxes[1].Text;
             Random rnd = new Random();
@@ -274,7 +281,7 @@ namespace karcioszki
                         card2 = "K";
                         break;
                     default:
-                        card2 = "Unknown"; // W razie nieprzewidzianego numeru
+                        card2 = "as"; // W razie nieprzewidzianego numeru
                         break;
                 }
             }
