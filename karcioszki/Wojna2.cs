@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Resources;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.IO;
+
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace karcioszki
@@ -20,22 +21,17 @@ namespace karcioszki
 
         Form1 form1;
         createTable class1;
+        private System.Windows.Forms.Timer timer;
         playersNick playersNick;
         public List<int> scoreList;
         liczba_os uczestnicy;
         private ResourceManager resources;
         public int punkty = 0;
         public int punkty2 = 0;
-        
-        private List<string> cards = new List<string>()
-        {
-            "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
-        };
+        public int liczbKart1 = 5;
+        public int liczbKart2 = 5;
 
-        private List<string> suits = new List<string>()
-        {
-            "♠", "♥", "♦", "♣"
-        };
+
 
         private Queue<string> player1Cards = new Queue<string>();
         private PictureBox pictureBox1;
@@ -61,19 +57,26 @@ namespace karcioszki
             this.uczestnicy = playersNick.uczestnicy;
             nameList = new List<string>();
             scoreList = new List<int>();
-            
+            this.Load += new EventHandler(Wojna2_Load);
 
         }
 
         private void Wojna2_Load(object sender, EventArgs e)
         {
-            // Rozdaj karty graczom
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 10; 
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
 
         }
 
 
-
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            
+            button1.PerformClick();
+        }
 
 
 
@@ -232,12 +235,11 @@ namespace karcioszki
             Random rnd = new Random();
             int randomNumber = rnd.Next(1, 13);
             int randomNumber2 = rnd.Next(1, 13);
-            string directoryPath = @"C:\Users|patpr\OneDrive\Dokumenty\Grafika\";
-
+      
 			string card;
             if (randomNumber >= 2 && randomNumber <= 10)
             {
-                card = randomNumber.ToString(); // Dla liczb od 2 do 10 używamy ich samego
+                card = randomNumber.ToString();
             }
             else
             {
@@ -256,14 +258,14 @@ namespace karcioszki
                         card = "K";
                         break;
                     default:
-                       card = "Joker"; // W razie nieprzewidzianego numeru
+                       card = "Joker";
                         break;
                 }
             }
             string card2;
             if (randomNumber2 >= 2 && randomNumber2 <= 10)
             {
-                card2 = randomNumber2.ToString(); // Dla liczb od 2 do 10 używamy ich samego
+                card2 = randomNumber2.ToString(); 
             }
             else
             {
@@ -282,7 +284,7 @@ namespace karcioszki
                         card2 = "K";
                         break;
                     default:
-                        card2 = "as"; // W razie nieprzewidzianego numeru
+                        card2 = "as"; 
                         break;
                 }
             }
@@ -290,57 +292,102 @@ namespace karcioszki
 
             label1.Text = card;
 
-            if (Directory.Exists(directoryPath))
-            {
-				string[] cardImages = Directory.GetFiles(directoryPath, "*.png");
+         
 
-				if (cardImages.Length > 0)
-                {
-                    // Random rnd = new Random();
-                    int index = rnd.Next(cardImages.Length);
-                    string imagePath = cardImages[index];
-                    pictureBox1.Image = Image.FromFile(imagePath);
-                    int index2 = rnd.Next(cardImages.Length);
-                    string imagePath2 = cardImages[index2];
-                    pictureBox2.Image = Image.FromFile(imagePath2);
-                }
-                else
-                {
-                    MessageBox.Show("Brak plików PNG w folderze.");
-                }
-            }
-            else
+            int index = rnd.Next(1,4);
+                    if(index == 1)
+                    {
+                        pictureBox1.Image = Image.FromFile("1.png");
+                    }
+                    
+                    if (index == 2)
+                    {
+                        pictureBox1.Image = Image.FromFile("2.png");
+                    }
+                    if (index == 3)
+                    {
+                        pictureBox1.Image = Image.FromFile("3.png");
+                    }
+                    if (index == 4)
+                    {
+                        pictureBox1.Image = Image.FromFile("4.png");
+                    }
+            
+                    int index2 = rnd.Next(1,4);
+            if (index2 == 1)
             {
-                MessageBox.Show("Podana ścieżka do folderu nie istnieje.");
+                pictureBox2.Image = Image.FromFile("1.png");
             }
+
+            if (index2 == 2)
+            {
+                pictureBox2.Image = Image.FromFile("2.png");
+            }
+            if (index2 == 3)
+            {
+                pictureBox2.Image = Image.FromFile("3.png");
+            }
+            if (index2 == 4)
+            {
+                pictureBox2.Image = Image.FromFile("4.png");
+            }
+         
+           
             if (randomNumber > randomNumber2)
             {
                 punkty++;
 
-
+                liczbKart1++;
+                liczbKart2--;
 
                 label4.Text = punkty.ToString();
             }
             if (randomNumber < randomNumber2)
             {
+                liczbKart2++;
+                liczbKart1--;
                 punkty2++;
                 label6.Text = punkty2.ToString();
             }
-            if(punkty == 20 || punkty2 == 20 )
+            if (liczbKart1 == 0)
             {
+                Application.Exit();
+
+                MessageBox.Show("Skończyły się karty użytkownika " + label8.Text);
+
                 if (punkty > punkty2)
                 {
                     saveResultsToCSV();
-                    MessageBox.Show("Gra zakończona. " + label8.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
+                    MessageBox.Show("Gra skończona " + label8.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
                     Application.Exit();
                 }
                 if (punkty < punkty2)
                 {
                     saveResultsToCSV();
-                    MessageBox.Show("Gra zakończona. " + label7.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
+                    MessageBox.Show("Gra skończona " + label7.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
                     Application.Exit();
                 }
             }
+                if (liczbKart2 == 0)
+                {
+                Application.Exit();
+                MessageBox.Show("Skończyły się karty użytkownika " + label7.Text);
+
+                if (punkty > punkty2)
+                {
+                    saveResultsToCSV();
+                    MessageBox.Show("Gra skończona " + label8.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
+                    Application.Exit();
+                }
+                if (punkty < punkty2)
+                {
+                    saveResultsToCSV();
+                    MessageBox.Show("Gra skończona " + label7.Text + "wygrał.  Wyniki zostały zapisane do pliku CSV.");
+                    Application.Exit();
+                }
+            
+            }
+          
         }
 
         private void saveResultsToCSV()
