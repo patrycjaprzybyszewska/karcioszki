@@ -22,7 +22,7 @@ namespace karcioszki
         public playersNick(Form1 form1, liczba_os uczestnicy)
         {
             InitializeComponent();
-            this.liczbaGraczy = liczbaGraczy;
+            this.liczbaGraczy = uczestnicy.SelectedNumberOfPlayers;
             this.form1 = form1;
             this.uczestnicy = uczestnicy;
             this.form1 = form1;
