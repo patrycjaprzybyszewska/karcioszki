@@ -368,7 +368,7 @@ namespace karcioszki
             }
                 if (liczbKart2 == 0)
                 {
-              \
+              
                 MessageBox.Show("Skończyły się karty użytkownika " + label7.Text);
 
                 if (punkty > punkty2)
