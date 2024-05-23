@@ -23,6 +23,7 @@ namespace karcioszki
 		playersNick playersNick;
 		liczba_os uczestnicy;
 		Form1 form1;
+		bool makaoCalled = false;
 
 		public Form2(playersNick playersNick)
 		{
@@ -84,12 +85,24 @@ namespace karcioszki
 
 		private void Makao_Click(object sender, EventArgs e)
 		{
-
+			if(Player1.Count == 1)
+			{
+				makaoCalled = true;
+			}
+			else
+			{
+				MessageBox.Show("Nie możesz wywołać Makao gdy masz więcej niż 1 kartę");
+			}
 		}
 
 		private void PoMakale_Click(object sender, EventArgs e)
 		{
+			if (Player1.Count == 0)
+			{
+				MessageBox.Show("Wygrałeś! Gratulacje!");
+				this.Close();
 
+			}
 		}
 		private void AddDobierzButton()
 		{
@@ -334,6 +347,12 @@ namespace karcioszki
 						Player1.Remove(cardToRemove);
 						this.Controls.Remove(clickedCard);
 
+						if (Player1.Count == 0 && !makaoCalled)
+						{
+							MessageBox.Show("Brak makao! Plus 5 kart.");
+							DrawAdditionalCards(5);
+						}
+
 						dobierzButton.Enabled = false;
 
 						if (!Player1.Any(k => k.Item2 == wartoscKlikniete))
@@ -374,6 +393,112 @@ namespace karcioszki
 			if (dalejButton != null)
 			{
 				this.Controls.Remove(dalejButton);
+			}
+			if (Player1.Count == 0)
+			{
+				MessageBox.Show("Brak po makale! Plus 5 kart.");
+				DrawAdditionalCards(5);
+			}
+			else if (Player1.Count == 1 && !makaoCalled)
+			{
+				MessageBox.Show("Brak makao! Plus 5 kart.");
+				DrawAdditionalCards(5);
+			}
+
+			RotatePlayers();
+			RemoveAllCardButtons();
+			RedrawBoard();
+			EnableAllCardButtons();
+			makaoCalled = false;
+		}
+
+		private void EnableAllCardButtons()
+		{
+			foreach (Control control in this.Controls)
+			{
+				if (control is Button button && button != kartaNaSrodku)
+				{
+					button.Enabled = true;
+				}
+			}
+		}
+
+		private void RemoveAllCardButtons()
+		{
+			var controlsToRemove = new List<Control>();
+			foreach (Control control in this.Controls)
+			{
+				if (control is Button button && button != kartaNaSrodku && button != dobierzButton && button.Text != "Makao" && button.Text != "Po makale")
+				{
+					controlsToRemove.Add(control);
+				}
+			}
+			foreach (var control in controlsToRemove)
+			{
+				this.Controls.Remove(control);
+			}
+		}
+
+		private void RedrawBoard()
+		{
+			foreach (Control control in this.Controls)
+			{
+				if (control is Button button && button != kartaNaSrodku && button != dobierzButton && button.Text != "Makao" && button.Text != "Po makale")
+				{
+					this.Controls.Remove(button);
+				}
+			}
+
+			CreateCardButtonsFromList(Player1, true, "dol");
+			CreateCardButtonsFromList(Player2, false, "gora");
+
+			if (liczbaGraczy >= 3)
+			{
+				CreateCardButtonsFromList(Player3, false, "prawo");
+			}
+			if (liczbaGraczy == 4)
+			{
+				CreateCardButtonsFromList(Player4, false, "lewo");
+			}
+		}
+
+		private void DrawAdditionalCards(int count)
+		{
+			for (int i = 0; i < count; i++)
+			{
+				if (taliaKart.Count >= count)
+				{
+					string kolor, wartosc;
+					Losuj(out kolor, out wartosc);
+					Player1.Add(new Tuple<string, string>(kolor, wartosc));
+				}
+				else
+				{
+					ReturnCards();
+					DrawAdditionalCards(count);
+				}
+			}
+		}
+
+		private void RotatePlayers()
+		{
+			List<Tuple<string, string>> temp = Player1;
+			Player1 = Player2;
+
+			if (liczbaGraczy == 2)
+			{
+				Player2 = temp;
+			}
+			else if (liczbaGraczy == 3)
+			{
+				Player2 = Player3;
+				Player3 = temp;
+			}
+			else if (liczbaGraczy == 4)
+			{
+				Player2 = Player3;
+				Player3 = Player4;
+				Player4 = temp;
 			}
 		}
 
