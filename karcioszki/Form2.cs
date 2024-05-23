@@ -18,12 +18,15 @@ namespace karcioszki
 		private List<Tuple<string, string>> Player2;
 		private List<Tuple<string, string>> Player3;
 		private List<Tuple<string, string>> Player4;
+		private List<string> playerNames;
 		private Button kartaNaSrodku;
 		private Button dobierzButton;
+		private Label labelPlayer1;
 		playersNick playersNick;
 		liczba_os uczestnicy;
 		Form1 form1;
 		bool makaoCalled = false;
+		private int currentPlayerIndex = 0;
 
 		public Form2(playersNick playersNick)
 		{
@@ -32,6 +35,7 @@ namespace karcioszki
 			this.form1 = playersNick.form1;
 			this.uczestnicy = playersNick.uczestnicy;
 			this.liczbaGraczy = playersNick.liczbaGraczy;
+			this.playerNames = playersNick.playerNames;
 			InicjalizujTalie();
 			SetBackgroundImage();
 			CreateCentralCard();
@@ -42,6 +46,7 @@ namespace karcioszki
 			CreateCardButtonsFromList(Player2, false, "gora");
 			AddDobierzButton();
 			AddMakaoButtons();
+			AddPlayerNameLabels();
 
 			if (liczbaGraczy >= 3)
 			{
@@ -62,6 +67,19 @@ namespace karcioszki
 			{
 				Player4 = new List<Tuple<string, string>>();
 			}
+		}
+
+		private void AddPlayerNameLabels()
+		{
+			labelPlayer1 = new Label();
+			labelPlayer1.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
+			labelPlayer1.Visible = true;
+			labelPlayer1.AutoSize = true;
+			labelPlayer1.Location = new Point(this.ClientSize.Width - 180, this.ClientSize.Height - 140);
+			labelPlayer1.ForeColor = Color.White;
+			labelPlayer1.Font = new Font(labelPlayer1.Font.FontFamily, labelPlayer1.Font.Size * 2, labelPlayer1.Font.Style);
+			labelPlayer1.BackColor = Color.Transparent;
+			this.Controls.Add(labelPlayer1);
 		}
 
 		private void AddMakaoButtons()
@@ -88,6 +106,7 @@ namespace karcioszki
 			if(Player1.Count == 1)
 			{
 				makaoCalled = true;
+				MessageBox.Show("Makao!");
 			}
 			else
 			{
@@ -102,8 +121,28 @@ namespace karcioszki
 				MessageBox.Show("Wygrałeś! Gratulacje!");
 				this.Close();
 
+				if (liczbaGraczy > 2)
+				{
+					playerNames.RemoveAt(currentPlayerIndex);
+					var playerTextBoxesList = playersNick.playerTextBoxes.ToList();
+					playerTextBoxesList.RemoveAt(currentPlayerIndex);
+					playersNick.playerTextBoxes = playerTextBoxesList.ToArray();
+
+					liczbaGraczy--;
+
+					if (currentPlayerIndex >= liczbaGraczy)
+					{
+						currentPlayerIndex = 0;
+					}
+				}
+				else
+				{
+					MessageBox.Show("Gra zakończona!");
+					this.Close();
+				}
 			}
 		}
+
 		private void AddDobierzButton()
 		{
 			dobierzButton = new Button();
@@ -347,17 +386,12 @@ namespace karcioszki
 						Player1.Remove(cardToRemove);
 						this.Controls.Remove(clickedCard);
 
-						if (Player1.Count == 0 && !makaoCalled)
-						{
-							MessageBox.Show("Brak makao! Plus 5 kart.");
-							DrawAdditionalCards(5);
-						}
-
 						dobierzButton.Enabled = false;
 
 						if (!Player1.Any(k => k.Item2 == wartoscKlikniete))
 						{
-							MessageBox.Show("Koniec ruchu! Kolej gracza: Player2");
+							currentPlayerIndex = (currentPlayerIndex + 1) % liczbaGraczy;
+							MessageBox.Show("Koniec ruchu! Kolej gracza: " + playersNick.playerTextBoxes[currentPlayerIndex].Text);
 							ShowDalejButton();
 							DisablePlayerButtons();
 						}
@@ -405,6 +439,7 @@ namespace karcioszki
 				DrawAdditionalCards(5);
 			}
 
+			labelPlayer1.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
 			RotatePlayers();
 			RemoveAllCardButtons();
 			RedrawBoard();

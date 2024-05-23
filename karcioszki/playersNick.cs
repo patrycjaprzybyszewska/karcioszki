@@ -16,7 +16,8 @@ namespace karcioszki
         public Form2 form2;
         public int liczbaGraczy;
         public liczba_os uczestnicy;
-        PIOTRUS piotrus;
+        public List<string> playerNames;
+		PIOTRUS piotrus;
         Wojna2 Wojna;
         public TextBox[] playerTextBoxes;
         public playersNick(Form1 form1, liczba_os uczestnicy)
@@ -94,7 +95,7 @@ namespace karcioszki
 		}
         //tu wprowadzamy nick
         
-        private void writeNick(object sender, EventArgs e)
+        public void writeNick(object sender, EventArgs e)
         {
             List<string> playerNames = new List<string>(); 
 
