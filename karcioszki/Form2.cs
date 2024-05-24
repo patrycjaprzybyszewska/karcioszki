@@ -21,12 +21,16 @@ namespace karcioszki
 		private List<string> playerNames;
 		private Button kartaNaSrodku;
 		private Button dobierzButton;
+		private Button dalejButton;
 		private Label labelPlayer1;
 		playersNick playersNick;
 		liczba_os uczestnicy;
 		Form1 form1;
 		bool makaoCalled = false;
+		bool pomakaleCalled = false;
 		private int currentPlayerIndex = 0;
+		private List<int> winningPlayers;
+		bool klik = false;
 
 		public Form2(playersNick playersNick)
 		{
@@ -36,7 +40,7 @@ namespace karcioszki
 			this.uczestnicy = playersNick.uczestnicy;
 			this.liczbaGraczy = playersNick.liczbaGraczy;
 			this.playerNames = playersNick.playerNames;
-			InicjalizujTalie();
+			InicjalizujTalie(); 
 			SetBackgroundImage();
 			CreateCentralCard();
 			int initialCardCount = 5;
@@ -119,26 +123,45 @@ namespace karcioszki
 			if (Player1.Count == 0)
 			{
 				MessageBox.Show("Wygrałeś! Gratulacje!");
-				this.Close();
 
-				if (liczbaGraczy > 2)
+				winningPlayers.Add(currentPlayerIndex);
+				pomakaleCalled = true;
+				
+				if (winningPlayers.Count == liczbaGraczy - 1)
 				{
-					playerNames.RemoveAt(currentPlayerIndex);
-					var playerTextBoxesList = playersNick.playerTextBoxes.ToList();
-					playerTextBoxesList.RemoveAt(currentPlayerIndex);
-					playersNick.playerTextBoxes = playerTextBoxesList.ToArray();
-
-					liczbaGraczy--;
-
-					if (currentPlayerIndex >= liczbaGraczy)
+					foreach (var playerIndex in Enumerable.Range(0, liczbaGraczy).Except(winningPlayers))
 					{
-						currentPlayerIndex = 0;
+						winningPlayers.Add(playerIndex);
 					}
+
+
+					string resultMessage = "Kolejność wygranych:\n";
+					for (int i = 0; i < winningPlayers.Count; i++)
+					{
+						resultMessage += $"{i + 1}. {playerNames[winningPlayers[i]]}\n";
+					}
+					
+					MessageBox.Show(resultMessage);
+					this.Close();
 				}
 				else
 				{
-					MessageBox.Show("Gra zakończona!");
-					this.Close();
+					ShowDalejButton();
+					if (Player1.Count == 0 && winningPlayers.Contains(currentPlayerIndex))
+					{
+						DisableAllButtons();
+					}
+				}
+			}
+		}
+
+		private void DisableAllButtons()
+		{
+			foreach (Control control in this.Controls)
+			{
+				if (control is Button button && button != dalejButton && button != kartaNaSrodku)
+				{
+					button.Enabled = false;
 				}
 			}
 		}
@@ -245,7 +268,7 @@ namespace karcioszki
 
 		private void ShowDalejButton()
 		{
-			Button dalejButton = new Button();
+			dalejButton = new Button();
 			dalejButton.Text = "Dalej";
 			dalejButton.Size = new Size(100, 50);
 			dalejButton.Location = new Point((this.ClientSize.Width / 2) - 50, (this.ClientSize.Height / 2) + 130);
@@ -390,10 +413,23 @@ namespace karcioszki
 
 						if (!Player1.Any(k => k.Item2 == wartoscKlikniete))
 						{
-							currentPlayerIndex = (currentPlayerIndex + 1) % liczbaGraczy;
-							MessageBox.Show("Koniec ruchu! Kolej gracza: " + playersNick.playerTextBoxes[currentPlayerIndex].Text);
+							if(currentPlayerIndex != liczbaGraczy - 1)
+							{
+								MessageBox.Show("Koniec ruchu! Kolej gracza: " + playersNick.playerTextBoxes[currentPlayerIndex + 1].Text);
+							}
+							else
+							{
+								MessageBox.Show("Koniec ruchu! Kolej gracza: " + playersNick.playerTextBoxes[0].Text);
+							}
+							
 							ShowDalejButton();
 							DisablePlayerButtons();
+							klik = true;
+						}
+						else if (Player1.Count == 1 && !makaoCalled)
+						{
+							MessageBox.Show("Brak makao! Plus 5 kart.");
+							DrawAdditionalCards(5);
 						}
 					}
 					
@@ -438,13 +474,14 @@ namespace karcioszki
 				MessageBox.Show("Brak makao! Plus 5 kart.");
 				DrawAdditionalCards(5);
 			}
-
+			currentPlayerIndex = (currentPlayerIndex + 1) % liczbaGraczy;
 			labelPlayer1.Text = playersNick.playerTextBoxes[currentPlayerIndex].Text;
 			RotatePlayers();
 			RemoveAllCardButtons();
 			RedrawBoard();
 			EnableAllCardButtons();
 			makaoCalled = false;
+			pomakaleCalled = false;
 		}
 
 		private void EnableAllCardButtons()
@@ -476,13 +513,7 @@ namespace karcioszki
 
 		private void RedrawBoard()
 		{
-			foreach (Control control in this.Controls)
-			{
-				if (control is Button button && button != kartaNaSrodku && button != dobierzButton && button.Text != "Makao" && button.Text != "Po makale")
-				{
-					this.Controls.Remove(button);
-				}
-			}
+			RemoveAllCardButtons();
 
 			CreateCardButtonsFromList(Player1, true, "dol");
 			CreateCardButtonsFromList(Player2, false, "gora");
@@ -517,6 +548,7 @@ namespace karcioszki
 
 		private void RotatePlayers()
 		{
+			klik = false;
 			List<Tuple<string, string>> temp = Player1;
 			Player1 = Player2;
 
@@ -536,6 +568,7 @@ namespace karcioszki
 				Player4 = temp;
 			}
 		}
+	
 
 		private string GetImagePath(string kolor)
 		{
